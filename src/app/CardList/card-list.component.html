@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm">
+      <h2>Card CENTER</h2>
+    </div>
+    <div class="col-sm">
+    </div>
+    <div class="col-sm form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search for Cards" aria-label="Search" [(ngModel)]="cardName"
+               (keyup)="autocomplete()" list="cardNames">
+        <span *ngIf="cardName">
+          <datalist id="cardNames" class="scrollable" style="max-height: 100px !important;">
+            <option *ngFor="let name of cardNames">{{name}}</option>
+          </datalist>
+        </span>
+        <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="searchCards()">Search</button>
+    </div>
+  </div>
+  <div *ngIf="response" class="row">
+    <div class="row" *ngFor="let card of response">
+    <div class="col-sm m-2">
+      <img src="{{card.image_uris.png}}" width="250" height="350" style="cursor: pointer" (click)="cardDetail(card)">
+      <br>
+      <span class="cardName">{{card.name}}</span>
+      <br>
+      {{card.set_name}}
+    </div>
+  </div>
+    <div *ngIf="card" class="row">
+        <div class="col-sm ml-2">
+          <img src="{{card.image_uris.png}}" width="250" height="350" style="cursor: pointer" (click)="cardDetail(card)">
+          <br>
+          <span class="cardName">{{card.name}}</span>
+          <br>
+          {{card.set_name}}
+      </div>
+</div>
+</div>
