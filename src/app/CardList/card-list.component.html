@@ -19,7 +19,7 @@
   <div *ngIf="response" class="row">
     <div class="row" *ngFor="let card of response">
     <div class="col-sm m-2">
-      <img src="{{card.image_uris.png}}" width="250" height="350" style="cursor: pointer" (click)="cardDetail(card)">
+      <img src="{{card.image_uris.png}}" width="250" height="350" style="cursor: pointer" routerLink="/card/{{card.name}}" routerLinkActive="active">
       <br>
       <span class="cardName">{{card.name}}</span>
       <br>
@@ -28,7 +28,7 @@
   </div>
     <div *ngIf="card" class="row">
         <div class="col-sm ml-2">
-          <img src="{{card.image_uris.png}}" width="250" height="350" style="cursor: pointer" (click)="cardDetail(card)">
+          <img src="{{card.image_uris.png}}" width="250" height="350" style="cursor: pointer" routerLink="/card/{{card.name}}" routerLinkActive="active">
           <br>
           <span class="cardName">{{card.name}}</span>
           <br>

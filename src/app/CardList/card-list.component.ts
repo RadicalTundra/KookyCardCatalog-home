@@ -1,8 +1,7 @@
 import {Component, NgModule, OnInit} from '@angular/core';
-import {Injectable} from '@angular/core';
-import { Product } from '../product.entity';
 import {HttpClient} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { Location } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -16,21 +15,9 @@ import {FormsModule} from '@angular/forms';
   styleUrls: ['./card-list-component.css']
 })
 
-// @Injectable()
-// export class CardService {
-//   private cards: Product[];
-//
-//   constructor() {
-//     this.cards = [
-//       { id: '01', name: ''}
-//     ]
-//   }
-//
-// }
-
 export class CardListComponent implements OnInit {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private location: Location) {
   }
 
   title = 'Yeet dab';
@@ -42,7 +29,9 @@ export class CardListComponent implements OnInit {
     const obs = this.http.get((this.cardName === '') ? 'https://api.scryfall.com/cards' :
       'https://api.scryfall.com/cards/named?fuzzy=' + this.cardName);
     obs.subscribe((response) => {
+     // @ts-ignore
       if (response.object === 'list' || response.object === 'catalog') {
+        // @ts-ignore
         this.response = response.data;
         this.card = '';
       } else {
@@ -58,6 +47,7 @@ export class CardListComponent implements OnInit {
       const obs = this.http.get('https://api.scryfall.com/cards/autocomplete?q=' + this.cardName);
       obs.subscribe((response) => {
         if (response) {
+          // @ts-ignore
           this.cardNames = response.data;
         }
         console.log(response);
@@ -67,6 +57,7 @@ export class CardListComponent implements OnInit {
   ngOnInit() {
     const obs = this.http.get('https://api.scryfall.com/cards');
     obs.subscribe((response) => {
+      // @ts-ignore
       this.response = response.data;
       console.log(response);
     });

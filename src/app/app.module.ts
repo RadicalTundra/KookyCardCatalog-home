@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'yeet-center', component: YeetListComponent},
   {path: 'cards', component: CardListComponent},
-  {path: 'cards/:id', component: CardListComponent}
+  {path: 'card/:name', component: CardDetailComponent}
 ];
 
 @NgModule({
