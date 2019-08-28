@@ -60,7 +60,7 @@ export class CardListComponent implements OnInit {
     }
   }
   addToDeck(newCard) {
-    this.cardToAdd = new Card(newCard.id, newCard.name, newCard.set_name, newCard.image_uris);
+    this.cardToAdd = new Card(newCard.id, newCard.name, newCard.set_name, newCard.image_uris, newCard.type_line);
     this.deckService.addToDeck(this.cardToAdd);
   }
   ngOnInit() {

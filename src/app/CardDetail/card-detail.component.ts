@@ -14,8 +14,6 @@ export class CardDetailComponent implements OnInit, OnDestroy {
   card: any;
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
-      console.log(params);
-      console.log(params.id);
       const obs = this.http.get( 'https://api.scryfall.com/cards/' + params.id);
       obs.subscribe((response) => {
           this.card = response;

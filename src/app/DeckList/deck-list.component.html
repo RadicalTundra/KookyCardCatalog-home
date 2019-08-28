@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm">
+      <h2>Your Deck in Progress</h2>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+  <div *ngIf="deck.length > 0" class="row">
+    <div class="row" *ngFor="let card of deck; let i = index">
+      <div class="col-sm m-2">
+        <label for="card{{i}}">
+          <img src="{{card.imageUrl.png}}" width="250" height="350" style="cursor: pointer">
+        </label>
+        <br>
+        <span class="cardName">{{card.name}}</span>
+        <br>
+        {{card.cardSet}}
+        <br>
+        <button class="btn btn-danger" (click)="deckService.removeFromDeck(i)">Remove from Deck</button>
+        <button class="btn btn-primary ml-2" id="card{{i}}"  routerLink="/card/{{card.id}}" routerLinkActive="active">View Card</button>
+      </div>
+    </div>
+  </div>

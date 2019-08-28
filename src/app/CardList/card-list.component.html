@@ -17,9 +17,9 @@
     </div>
   </div>
   <div *ngIf="response" class="row">
-    <div class="row" *ngFor="let card of response">
+    <div class="row" *ngFor="let card of response; let i = index">
     <div class="col-sm m-2">
-      <label for="card{{card.id}}">
+      <label for="card{{i}}">
       <img src="{{card.image_uris.png}}" width="250" height="350" style="cursor: pointer">
       </label>
       <br>
@@ -28,16 +28,21 @@
       {{card.set_name}}
       <br>
       <button class="btn btn-success" (click)="addToDeck(card)">Add to Deck</button>
-      <button class="btn btn-primary ml-2" id="card{{card.id}}"  routerLink="/card/{{card.id}}" routerLinkActive="active">View Card</button>
+      <button class="btn btn-primary ml-2" id="card{{i}}"  routerLink="/card/{{card.id}}" routerLinkActive="active">View Card</button>
     </div>
   </div>
     <div *ngIf="card" class="row">
         <div class="col-sm ml-2">
-          <img src="{{card.image_uris.png}}" width="250" height="350" style="cursor: pointer" routerLink="/card/{{card.name}}" routerLinkActive="active">
+          <label for="{{card.name}}">
+          <img src="{{card.image_uris.png}}" width="250" height="350" style="cursor: pointer">
+          </label>
           <br>
           <span class="cardName">{{card.name}}</span>
           <br>
           {{card.set_name}}
-      </div>
+          <br>
+          <button class="btn btn-success" (click)="addToDeck(card)">Add to Deck</button>
+          <button class="btn btn-primary ml-2" id="{{card.name}}"  routerLink="/card/{{card.id}}" routerLinkActive="active">View Card</button>
+        </div>
 </div>
 </div>
