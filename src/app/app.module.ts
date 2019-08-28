@@ -11,13 +11,14 @@ import { YeetListComponent } from './YeetList/yeet-list.component';
 import { CardListComponent } from './CardList/card-list.component';
 import {FormsModule} from '@angular/forms';
 import { CardDetailComponent } from './CardDetail/card-detail.component';
+import { DeckListComponent } from './DeckList/deck-list.component';
 
 const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: '', component: HomeComponent},
   {path: 'yeet-center', component: YeetListComponent},
   {path: 'cards', component: CardListComponent},
-  {path: 'card/:name', component: CardDetailComponent}
+  {path: 'card/:id', component: CardDetailComponent}
 ];
 
 @NgModule({
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     YeetListComponent,
     CardListComponent,
     HomeComponent,
-    CardDetailComponent
+    CardDetailComponent,
+    DeckListComponent
   ],
   imports: [
     BrowserModule,
