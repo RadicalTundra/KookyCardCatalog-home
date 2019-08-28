@@ -2,6 +2,8 @@ import {Component, NgModule, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { Location } from '@angular/common';
+import {DeckService} from '../deck.service';
+import {Card} from '../card';
 
 @NgModule({
   imports: [
@@ -16,8 +18,10 @@ import { Location } from '@angular/common';
 })
 
 export class CardListComponent implements OnInit {
-
+  deckService: DeckService = new DeckService();
+  deck: any[];
   constructor(private http: HttpClient, private location: Location) {
+    this.deck = this.deckService.getDeck();
   }
 
   title = 'Yeet dab';
@@ -25,6 +29,7 @@ export class CardListComponent implements OnInit {
   response: any = [];
   cardNames: any = [];
   card: any;
+  cardToAdd: Card;
   searchCards() {
     const obs = this.http.get((this.cardName === '') ? 'https://api.scryfall.com/cards' :
       'https://api.scryfall.com/cards/named?fuzzy=' + this.cardName);
@@ -53,6 +58,10 @@ export class CardListComponent implements OnInit {
         console.log(response);
       });
     }
+  }
+  addToDeck(newCard) {
+    this.cardToAdd = new Card(newCard.id, newCard.name, newCard.set_name, newCard.image_uris);
+    this.deckService.addToDeck(this.cardToAdd);
   }
   ngOnInit() {
     const obs = this.http.get('https://api.scryfall.com/cards');
