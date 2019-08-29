@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm">
-      <h2>Card CENTER</h2>
+      <h2 style="font-family: 'Felix Titling'">Magic Cards</h2>
     </div>
     <div class="col-sm">
     </div>
@@ -13,7 +13,7 @@
             <option *ngFor="let name of cardNames">{{name}}</option>
           </datalist>
         </span>
-        <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="searchCards()">Search</button>
+        <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="searchCards()" >Search</button>
     </div>
   </div>
   <div *ngIf="response" class="row">
@@ -45,4 +45,8 @@
           <button class="btn btn-primary ml-2" id="{{card.name}}"  routerLink="/card/{{card.id}}" routerLinkActive="active">View Card</button>
         </div>
 </div>
+</div>
+  <div *ngIf="response.length === 0">
+    No cards found with name "{{cardName}}"! Please search again.
+  </div>
 </div>

@@ -31,8 +31,9 @@ export class CardListComponent implements OnInit {
   card: any;
   cardToAdd: Card;
   searchCards() {
+    this.response = [];
     const obs = this.http.get((this.cardName === '') ? 'https://api.scryfall.com/cards' :
-      'https://api.scryfall.com/cards/named?fuzzy=' + this.cardName);
+      'https://api.scryfall.com/cards/search?q=' + this.cardName + '&unique=cards&as=grid&order=name');
     obs.subscribe((response) => {
      // @ts-ignore
       if (response.object === 'list' || response.object === 'catalog') {

@@ -1,7 +1,27 @@
-<div>
-  <img src="{{card.image_uris.large}}" height="500" width="350">
-  <br>
-  <a href="{{card.purchase_uris.tcgplayer}}"><i>Buy from TCG Player</i>
-  <span class="ml-3">${{card.prices.usd}}</span>
-  </a>
+<div class="row m-2">
+  <div class="col-4 ml-2">
+    <img src="{{card.image_uris.large}}" height="500" width="350">
+    <br>
+    <button class="btn btn-success my-2" (click)="addToDeck(card)">Add to Deck</button>
+    <button class="btn btn-primary ml-2" routerLink="/cards" routerLinkActive="active">Back To List</button>
+    <br>
+    <a href="{{card.purchase_uris.tcgplayer}}"><i>Buy from TCG Player</i>
+    <span class="ml-3" *ngIf="card.prices.usd !== 0">Price N/A</span>
+      <span class="ml-3" *ngIf="card.prices.usd === 0">${{card.prices.usd}}</span>
+    </a>
+  </div>
+  <div class="col-4">
+    <span class="mr-5">{{card.name}}</span>
+      <span *ngFor="let mana of manaTypes">
+        {{mana}}
+      </span>
+    <hr>
+    <p>{{card.type_line}}</p>
+    <hr>
+    <p *ngFor="let text of oracleTexts">{{text}}<br></p>
+    <hr>
+    <p><b>{{card.power}}/{{card.toughness}}</b></p>
+    <hr>
+    <p>Illustrated by {{card.artist}}</p>
+  </div>
 </div>
