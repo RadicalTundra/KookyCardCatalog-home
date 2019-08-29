@@ -6,6 +6,7 @@ const deck: Card[] = [];
   providedIn: 'root'
 })
 export class DeckService {
+  result: boolean;
   getDeck() {
     return deck;
   }
@@ -44,7 +45,10 @@ export class DeckService {
     console.log(deck);
   }
   removeFromDeck(cardIndex: number) {
-    deck.splice(cardIndex, 1);
+    this.result = window.confirm('Are you sure you want to take a ' + deck[cardIndex].name + ' out of your deck?');
+    if (this.result === true) {
+      deck.splice(cardIndex, 1);
+    }
   }
   constructor() { }
 }
